@@ -1,3 +1,4 @@
+#ejercicio 4, grafica f(x)=ln(x) con polinomios de taylor de grado 1,2,4,8,16
 import matplotlib.pyplot as plt
 import numpy as np
 
