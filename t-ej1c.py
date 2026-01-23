@@ -1,3 +1,4 @@
+#aproximacion de pi mediante la serie de ramanuyan
 import math
 val_exacto = math.pi
 print("="*68)
