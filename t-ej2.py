@@ -46,8 +46,8 @@ x = np.linspace(-2, 2, 400)
 y = f(x)
 
 plt.plot(x, y, label="f(x)= 1/(1+x^2)", linewidth=2, color='black')
-
-for n in [0, 1, 2, 3, 4]:
+#dado que en los casos impares los resultados sin iguales entonces
+for n in [0, 2, 4]:
     y_f = taylor_f(x, n)
     plt.plot(x, y_f, label=f"Taylor de grado {n}", linewidth=2, linestyle='--')
 
