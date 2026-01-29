@@ -1,0 +1,24 @@
+Esta guía muestra los pasos para instalar la versión más estable de Python (3.9.18) en el clúster de nuestra querida facultad 
+
+El problema: muchos módulos de Python requieren versiones estables de Python para funcionar, la versión instalada en el clúster (3.6.18) ha terminado su vida útil y por lo tanto no es compatible con las últimas versiones de ciertos módulos como matplotlib.
+
+Así que nos toca descargar los binarios de matplotlib y compilarlos nosotros mismos.
+
+Paso 1. Conseguir el binario:
+cd ~
+wget https://www.python.org/ftp/python/3.9.18/Python-3.9.18.tgz
+tar -xzf Python-3.9.18.tgz
+cd Python-3.9.18
+
+Paso 2. Instalar localmente para tu usuario
+./configure --prefix=$HOME/python-3.9
+make -j$(nproc)
+make install
+
+Paso 3. Crear un entorno virtual que utilice la versión de Python que instalamos
+~/python-3.9/bin/python3.9 -m venv ~/documentos(o la carpeta que quieras que tenga los entornos)/nombre_del_entorno
+
+Paso 4. Entrar al entorno, actualizar e instalar lo necesario
+source ~/documentos/nombre_del_entorno/bin/actívate
+pip install --upgrade pip setuptools Wheel
+pip install matplotlib numpy
