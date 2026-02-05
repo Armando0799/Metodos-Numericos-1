@@ -13,6 +13,10 @@ def eval_f(x_val):
 f_a = eval_f(a)
 f_b = eval_f(b)
 
+print("-"*99)
+print(f"| {'n':^5} | {'a':^15} | {'b':^15} | {'p_1':^15} | {'f(p)':^15} | {'error':^15} |")
+print("-"*99)
+
 if f_a * f_b < 0:
     p_1 = 0
     while b - a > r_string:
@@ -20,6 +24,7 @@ if f_a * f_b < 0:
         f_p1 = eval_f(p_1)
 
         if f_p1 == 0:
+            print(f"| {1:^5} | {a:^15.6f} | {b:^15.6f} | {p_1:^15.6f} | {f_p1:^15.6} | {error_real:^15.6f}")
             break
 
         if eval_f(a) * f_p1 < 0:
