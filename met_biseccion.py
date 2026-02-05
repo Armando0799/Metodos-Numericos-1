@@ -28,5 +28,7 @@ if f_a * f_b < 0:
             a = p_1
     print(f"Raiz encontrada en: {p_1}")
 else:
-    print("\n*"*35)
+    print("\n")
+    print("*"*80)
     print("ERROR: La funcion debe de tener signos opuestos en los extremos del intervalo.")
+    print("*"*80)
