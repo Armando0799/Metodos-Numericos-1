@@ -24,7 +24,7 @@ if f_a * f_b < 0:
         f_p1 = eval_f(p_1)
 
         if f_p1 == 0:
-            print(f"| {1:^5} | {a:^15.6f} | {b:^15.6f} | {p_1:^15.6f} | {f_p1:^15.6} | {error_real:^15.6f}")
+            #print(f"| {1:^5} | {a:^15.6f} | {b:^15.6f} | {p_1:^15.6f} | {f_p1:^15.6} | {error_real:^15.6f}")
             break
 
         if eval_f(a) * f_p1 < 0:
