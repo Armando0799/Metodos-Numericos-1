@@ -23,7 +23,7 @@ while True:
     n += 1
 
 #print("="*70)
-print("\n")
+#print("\n")
 print("-"*50)
 print(f"El minino entero n es: {n}")
 print(f"Error: {error_abs}")
