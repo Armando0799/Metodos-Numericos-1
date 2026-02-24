@@ -13,18 +13,21 @@ def eval_f(x_val):
 f_a = eval_f(a)
 f_b = eval_f(b)
 
-print("-"*99)
-print(f"| {'n':^5} | {'a':^15} | {'b':^15} | {'p_1':^15} | {'f(p)':^15} | {'error':^15} |")
-print("-"*99)
+print("-"*81)
+print(f"| {'n':^5} | {'a':^15} | {'b':^15} | {'p_1':^15} | {'f(p)':^15} |")
+print("-"*81)
 
 if f_a * f_b < 0:
     p_1 = 0
+    cont = 0
     while b - a > r_string:
         p_1 = (a + b)/2
         f_p1 = eval_f(p_1)
+        cont += 1
+        print(f"| {cont:^5} | {a:^15.6f} | {b:^15.6f} | {p_1:^15.6f} | {f_p1:^15.6} |")
 
         if f_p1 == 0:
-            #print(f"| {1:^5} | {a:^15.6f} | {b:^15.6f} | {p_1:^15.6f} | {f_p1:^15.6} | {error_real:^15.6f}")
+            print(f"| {1:^5} | {a:^15.6f} | {b:^15.6f} | {p_1:^15.6f} | {f_p1:^15.6} |")
             break
 
         if eval_f(a) * f_p1 < 0:
