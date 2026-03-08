@@ -122,7 +122,7 @@ def calificar_examenes(df_examenes, respuestas_correctas):
     
     # Identifica columnas de respuestas (números del 1 al 20)esto puede variar dependiendo el total de respuestas
     columnas_respuestas = []
-    for i in range(1, 21):#aca ajustamos dependiendo de nuestras necesidades
+    for i in range(1, 11):#aca ajustamos dependiendo de nuestras necesidades
         col_name = str(i)
         if col_name in df_examenes.columns:
             columnas_respuestas.append(col_name)
