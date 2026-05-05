@@ -1,35 +1,100 @@
-import math
+"""import numpy as np
+import matplotlib.pyplot as plt
 
-valor_verdadero = math.exp(0.5)
-tolerancia = 0.005
+# Función
+def f(x):
+    return np.abs(x) + 0.2 * np.sin(10*x)
 
-# Corrección 1: Inicializar correctamente
-serie = 1  # Término n=0: x^0/0! = 1
-n = 0  # Empezamos desde n=0
-error = 1  # Error inicial grande para entrar al bucle
-
-print("Términos\tAproximación\tError Verdadero\tError Relativo")
-print("-" * 60)
-
-# Corrección 2: Condición del bucle
-while error > tolerancia:
-    valor_anterior = serie
-    n = n + 1
-    # Corrección 3: Sumar el término correcto (n actual)
-    termino = ((0.5)**n) / math.factorial(n)
-    serie = serie + termino
+# Diferencias divididas
+def diferencias_divididas(x, y):
+    n = len(x)
+    coef = np.copy(y)
     
-    # Corrección 4: Calcular errores correctamente
-    error_verdadero = abs(valor_verdadero - serie)
-    error_relativo = abs((serie - valor_anterior) / serie)  # Usar valor actual, no anterior
+    for j in range(1, n):
+        for i in range(n-1, j-1, -1):
+            coef[i] = (coef[i] - coef[i-1]) / (x[i] - x[i-j])
     
-    # Usamos el error relativo para la condición
-    error = error_relativo
-    
-    print(f"{n}\t\t{serie:.6f}\t\t{error_verdadero:.6f}\t\t{error_relativo:.6f}")
+    return coef
 
-print("\n" + "=" * 60)
-print(f"Valor verdadero: {valor_verdadero:.6f}")
-print(f"Aproximación final: {serie:.6f}")
-print(f"Número de términos necesarios: {n}")
-print(f"Error absoluto final: {abs(valor_verdadero - serie):.6f}")
+# Evaluación del polinomio de Newton
+def newton_eval(x_eval, x, coef):
+    n = len(coef)
+    p = coef[-1]
+    
+    for k in range(n-2, -1, -1):
+        p = p * (x_eval - x[k]) + coef[k]
+    
+    return p
+
+# 🔹 Número de puntos
+for n in [15, 20]:
+    
+    # Puntos equiespaciados
+    x = np.linspace(-1, 1, n)
+    y = f(x)
+    
+    coef = diferencias_divididas(x, y)
+    
+    # Para graficar
+    x_plot = np.linspace(-1, 1, 400)
+    y_real = f(x_plot)
+    y_poly = np.array([newton_eval(xi, x, coef) for xi in x_plot])
+    
+    plt.figure()
+    plt.plot(x_plot, y_real, label="f(x)")
+    plt.plot(x_plot, y_poly, label="Polinomio Newton")
+    plt.scatter(x, y, label="Puntos")
+    plt.title(f"Interpolación Newton con {n} puntos (uniformes)")
+    plt.legend()
+    plt.grid()
+    plt.show()"""
+import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x):
+    return np.abs(x) + 0.2 * np.sin(10*x)
+
+def diferencias_divididas(x, y):
+    n = len(x)
+    coef = np.copy(y)
+    
+    for j in range(1, n):
+        for i in range(n-1, j-1, -1):
+            coef[i] = (coef[i] - coef[i-1]) / (x[i] - x[i-j])
+    
+    return coef
+
+def newton_eval(x_eval, x, coef):
+    n = len(coef)
+    p = coef[-1]
+    
+    for k in range(n-2, -1, -1):
+        p = p * (x_eval - x[k]) + coef[k]
+    
+    return p
+
+# 🔹 Puntos de Chebyshev
+def chebyshev(n):
+    k = np.arange(n)
+    return np.cos((2*k + 1) * np.pi / (2*n))
+
+# 🔹 Número de puntos
+for n in [15, 20]:
+    
+    x = chebyshev(n)   # ← aquí cambia todo
+    y = f(x)
+    
+    coef = diferencias_divididas(x, y)
+    
+    x_plot = np.linspace(-1, 1, 400)
+    y_real = f(x_plot)
+    y_poly = np.array([newton_eval(xi, x, coef) for xi in x_plot])
+    
+    plt.figure()
+    plt.plot(x_plot, y_real, label="f(x)")
+    plt.plot(x_plot, y_poly, label="Polinomio Newton")
+    plt.scatter(x, y, label="Puntos Chebyshev")
+    plt.title(f"Interpolación con {n} puntos (no uniformes)")
+    plt.legend()
+    plt.grid()
+    plt.show()
